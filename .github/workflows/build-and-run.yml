@@ -1,0 +1,24 @@
+name: Build and Run ConsoleApp
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Build the app
+      run: dotnet build SampleGreeter/SampleGreeter.csproj
+
+    - name: Run the app
+      run: dotnet run --project SampleGreeter/SampleGreeter.csproj
