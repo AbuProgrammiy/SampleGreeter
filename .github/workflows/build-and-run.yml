@@ -27,7 +27,14 @@ jobs:
       run: dotnet publish SampleGreeter/SampleGreeter.csproj -c Release -o publish
 
     - name: Copy published files to bot directory
-      run: robocopy publish C:\TelegramBot /MIR
+      run: |
+        robocopy publish C:\TelegramBot /MIR
+        $rc = $LASTEXITCODE
+        if ($rc -le 3) {
+          exit 0
+        } else {
+          exit $rc
+        }
 
     - name: Restart bot service
       run: |
