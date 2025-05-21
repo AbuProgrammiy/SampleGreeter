@@ -38,5 +38,4 @@ jobs:
 
     - name: Restart bot service
       run: |
-        net stop TelegramBotService
         net start TelegramBotService
