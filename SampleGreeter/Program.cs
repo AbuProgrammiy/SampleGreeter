@@ -8,7 +8,8 @@ var me = await bot.GetMe();
 bot.OnMessage += OnMessage;
 
 Console.WriteLine($"@{me.Username} is running... Press Enter to terminate");
-Console.ReadLine();
+await Task.Delay(-1, cts.Token);
+//Console.ReadLine();
 cts.Cancel(); // stop the bot
 
 // method that handle messages received by the bot:
